@@ -318,6 +318,8 @@ class Language(str, Enum):
                     for postfix in ["x", ""]:
                         for base_pattern in ["ts", "js"]:
                             path_patterns.append(f".{prefix}{base_pattern}{postfix}")
+                # Google Apps Script files are JavaScript with a .gs extension
+                path_patterns.append(".gs")
                 return FilenameMatcher(*path_patterns)
             case self.CSHARP | self.CSHARP_OMNISHARP:
                 return FilenameMatcher(".cs")

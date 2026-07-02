@@ -222,6 +222,10 @@ class TypeScriptLanguageServer(SolidLanguageServer):
             return "typescriptreact"
         if relative_file_path.endswith(".jsx"):
             return "javascriptreact"
+        # Google Apps Script: JavaScript source with a .gs extension; opening it
+        # as "typescript" makes tsserver apply TS-only parsing rules.
+        if relative_file_path.endswith(".gs"):
+            return "javascript"
         return self.language_id
 
     def _get_initialize_params(self, repository_absolute_path: str) -> InitializeParams:
